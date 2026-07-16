@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Happy Birthday — A Story Written in Starlight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Sora:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     LOADING SCREEN
+     ============================================================ -->
+<div id="loader">
+  <canvas id="loader-canvas"></canvas>
+  <div class="loader-mark">Preparing Something Magical…</div>
+  <div class="loader-bar"><i id="loader-fill"></i></div>
+  <div class="loader-pct" id="loader-pct">0%</div>
+</div>
+
+<!-- fixed atmosphere -->
+<div id="atmosphere"></div>
+<canvas id="bg-canvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+<div id="grain"></div>
+<div id="vignette"></div>
+
+<!-- scroll progress -->
+<div id="progress"></div>
+
+<!-- chapter navigation -->
+<nav id="chapter-nav"></nav>
+
+<!-- custom cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero" data-chapter="Hero">
+  <div class="hero-eyebrow">a small universe, made for you</div>
+  <h1 class="hero-title">Happy Birthday Bhhotuuu.....</h1>
+  <p class="hero-sub" id="typed-sub"><span></span><i class="cursor-char">|</i></p>
+  <button class="magic-btn" id="begin-btn"><span>Begin the Journey</span></button>
+  <div class="scroll-hint">scroll<i></i></div>
+</section>
+
+<!-- ============================================================
+     WISHES
+     ============================================================ -->
+<section id="wishes" data-chapter="Wishes">
+  <div class="section-inner">
+    <p class="eyebrow reveal">reasons, gathered like stars</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);max-width:640px;">A few things I never say often enough</h2>
+    <div class="wish-grid">
+      <div class="wish-card reveal"><div class="num">01</div><p>Your laugh has a way of making ordinary rooms feel like somewhere worth being.</p></div>
+      <div class="wish-card reveal"><div class="num">02</div><p>You notice the small things  and that's the rarest kind of kindness there is.</p></div>
+      <div class="wish-card reveal"><div class="num">03</div><p>Every year you become more unmistakably, beautiful. </p></div>
+      <div class="wish-card reveal"><div class="num">04</div><p>You make hard days lighter just by being in them.</p></div>
+      <div class="wish-card reveal"><div class="num">05</div><p>Your presence is contagious; it spreads happiness wherever you go.</p></div>
+      <div class="wish-card reveal"><div class="num">06</div><p>Knowing you has made my life quietly, permanently better.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TIMELINE
+     ============================================================ -->
+<section id="timeline-section" data-chapter="Moments">
+  <div class="section-inner">
+    <p class="eyebrow reveal">a year, in moments</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">Some of what I remember</h2>
+    <div class="timeline">
+      <div class="t-item reveal"><div class="t-label">once upon a spring</div><h3>The day everything felt easy</h3><p>Ordinary hours that turned, somehow, into a memory I keep coming back to.</p></div>
+      <div class="t-item reveal"><div class="t-label">a quiet evening</div><h3>The conversation that ran too long</h3><p>The kind where the clock disappears and only the talking matters.</p></div>
+      <div class="t-item reveal"><div class="t-label">an ordinary tuesday</div><h3>The small thing you did without thinking</h3><p>You probably don't remember it anymore.
+But I do.
+Because sometimes the smallest gestures leave the biggest place in someone's heart. </p></div>
+      <div class="t-item reveal"><div class="t-label">tonight</div><h3>And now, this</h3><p>A page, built just to say: I'm glad you exist.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CAKE
+     ============================================================ -->
+<section id="cake-section" data-chapter="The Cake">
+  <div class="section-inner">
+    <p class="eyebrow reveal">the ceremony</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">Blow out the candles</h2>
+    <div class="cake-stage reveal" id="cake-stage">
+      <div class="cake-tier tier-3"></div>
+      <div class="cake-tier tier-2"></div>
+      <div class="cake-tier tier-1"></div>
+      <div class="candle" style="margin-left:-38px;"><div class="flame"></div></div>
+      <div class="candle" style="margin-left:-4px;"><div class="flame"></div></div>
+      <div class="candle" style="margin-left:30px;"><div class="flame"></div></div>
+    </div>
+    <div class="make-wish" id="make-wish">✨ Make a wish ✨</div>
+    <div class="cake-hint reveal">click each candle to blow it out</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BALLOONS
+     ============================================================ -->
+<section id="balloon-section" data-chapter="Balloons">
+  <div class="section-inner">
+    <p class="eyebrow reveal">let a few go</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">Pop a balloon, find a wish</h2>
+    <div class="balloon-field" id="balloon-field"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GIFTS
+     ============================================================ -->
+<section id="gift-section" data-chapter="Gifts">
+  <div class="section-inner">
+    <p class="eyebrow reveal">a few small surprises</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">Open something</h2>
+    <div class="gift-grid" id="gift-grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY
+     ============================================================ -->
+<section id="gallery-section" data-chapter="Gallery">
+  <div class="section-inner">
+    <p class="eyebrow reveal">keepsakes</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">A few frames to fill later</h2>
+    <div class="gallery" id="gallery">
+      <div class="polaroid reveal" style="--r:-4deg"><div class="frame" style="background:linear-gradient(135deg, #2c2160, #141a3d); display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-family:var(--script); color:var(--gold-300);">✨</div><span class="cap">Bhootuu..</span></div>
+      <div class="polaroid reveal" style="--r:3deg"><div class="frame" style="background:linear-gradient(135deg, #1a2350, #0b0e23); display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-family:var(--script); color:var(--gold-300);">🌸</div><span class="cap">Painting...Lisa</span></div>
+      <div class="polaroid reveal" style="--r:-2deg"><div class="frame" style="background:linear-gradient(135deg, #2c2160, #141a3d); display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-family:var(--script); color:var(--gold-300);">🌙</div><span class="cap">Uuuuuuuu....Uuuu...</span></div>
+      <div class="polaroid reveal" style="--r:5deg"><div class="frame" style="background:linear-gradient(135deg, #1a2350, #0b0e23); display:flex; align-items:center; justify-content:center; font-size:2.5rem; font-family:var(--script); color:var(--gold-300);">💫</div><span class="cap">Afrrenn..Affreen...</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NIGHT SKY
+     ============================================================ -->
+<section id="sky-section" data-chapter="Night Sky">
+  <div class="section-inner">
+    <p class="eyebrow reveal">a sky, just for tonight</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">Click a star</h2>
+    <div class="sky-wrap reveal" id="sky-wrap">
+      <canvas id="sky-canvas"></canvas>
+      <div class="sky-caption">every star is holding a small wish for you</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FIREWORKS
+     ============================================================ -->
+<section id="firework-section" data-chapter="Fireworks">
+  <div class="section-inner">
+    <p class="eyebrow reveal">the finale</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">Light up the sky</h2>
+    <div class="fw-stage reveal" id="fw-stage">
+      <canvas id="fw-canvas"></canvas>
+      <button class="magic-btn fw-btn" id="fw-btn"><span>Set off fireworks</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LETTER
+     ============================================================ -->
+<section id="letter-section" data-chapter="Letter">
+  <div class="section-inner">
+    <p class="eyebrow reveal">one last thing</p>
+    <h2 class="reveal" style="font-size:clamp(30px,5vw,52px);">A letter, sealed for today</h2>
+    <div class="envelope-wrap reveal">
+      <div class="envelope" id="envelope">
+        <div class="env-back"></div>
+        <div class="env-flap"></div>
+        <div class="env-seal">HB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="letter-modal" id="letter-modal">
+  <button class="letter-close" id="letter-close">✕</button>
+  <div class="letter-paper">
+**Dearest You,**<br><br>
+
+I wanted to create something for you instead of sending just another message because someone as special as you deserves something that lasts longer than a notification on a screen.<br><br>
+
+So I built this little world for you filled with candles, stars, and a little magic. Every tiny detail carries a thought of you, because today isn't just another day... it's the day the world became a little brighter when you arrived.<br><br>
+
+Thank you for being exactly who you are for your smile, your kindness, your laughter, and all the little things you do without even realizing how much they mean.<br><br>
+
+I hope this year brings you the same happiness and warmth that you bring into the lives of everyone around you.<br><br>
+
+And if life ever feels a little too loud, I hope you remember that somewhere, someone is endlessly grateful that you exist.<br><br>
+
+Happy Birthday to the most beautiful soul.<br><br>
+
+**With all my Heart,**<br>
+**Always.** 
+
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer" data-chapter="Always">
+  <canvas id="footer-canvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+<div class="msg reveal" style="position:relative;">
+  Every day with you feels like a celebration,<br>
+  and today the whole world shines a little brighter<br>
+  because it's YOUR day.<br><br>
+  Happy Birthday, beautiful. 🌹
+</div>
+  <div class="date reveal" style="position:relative;">17 July</div>
+  <div class="sign reveal" style="position:relative;">— with love, always</div>
+</footer>
+
+<!-- ============================================================
+     MUSIC PLAYER
+     ============================================================ -->
+<div id="player">
+  <button class="p-btn" id="play-btn">▶</button>
+  <div class="p-meta">
+    <b>Our Song</b>
+    <span>Saiyaara Reprise</span>
+  </div>
+  <div class="p-bar">
+    <i id="p-progress"></i>
+  </div>
+
+  <audio id="audio" loop>
+    <source src="music/Saiyaara Reprise Female Saiyaara 128 Kbps.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
